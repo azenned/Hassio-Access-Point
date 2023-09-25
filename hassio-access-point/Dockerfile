@@ -16,8 +16,8 @@ COPY dnsmasq.conf /
 RUN mkdir -p "/lib/firmware/cypress"
 RUN mkdir -p "/lib/firmware/brcm"
 COPY cyfmac43455-sdio-minimal.bin /lib/firmware/cypress/
-RUN ln -sf /lib/firmware/cypress/cyfmac43455-sdio-minimal.bin /lib/firmware/brcm/brcmfmac43455-sdio.bin
-RUN ln -sf /lib/firmware/cypress/cyfmac43455-sdio-minimal.bin /lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,4-model-b.bin
+RUN ln -sf /lib/firmware/cypress/cyfmac43455-sdio-minimal.bin /lib/firmware/brcmfmac43455-sdio.bin
+RUN ln -sf /lib/firmware/cypress/cyfmac43455-sdio-minimal.bin /lib/firmware/brcmfmac43455-sdio.raspberrypi,4-model-b.bin
 
 COPY run.sh /
 RUN chmod a+x /run.sh
