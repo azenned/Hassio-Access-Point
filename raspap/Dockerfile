@@ -6,8 +6,6 @@ FROM ${BUILD_FROM}
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get update
-RUN curl google.fr
-RUN apt-get update
 RUN apt-get install -y software-properties-common 
 RUN add-apt-repository ppa:ondrej/php
 RUN apt-get install -y git iptables iproute2 iw wpasupplicant net-tools
