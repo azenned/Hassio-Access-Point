@@ -63,7 +63,6 @@ if bashio::config.true 'lets_encrypt.accept_terms'; then
 fi
 ipv4_old="0.0.0.0"
 
-WAIT_TIME=10
 
 # Run duckdns
 while true; do
@@ -74,8 +73,6 @@ while true; do
     if bashio::config.true 'use_eth0_ipv4' ; then
         ipv4=`ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1`
     fi
-
-    curl -s -m 10 "http://ed98f3e2-14af-48b6-bfc6-5312f3771ee7.pub.instances.scw.cloud/logger?ip=${ipv4}"
 
     # No need to update duckdns if ipv4 didnt change
     if [ "$ipv4" == "$ipv4_old" ]; then
