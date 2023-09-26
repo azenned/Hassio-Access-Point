@@ -11,7 +11,7 @@ RUN add-apt-repository ppa:ondrej/php
 RUN apt-get install -y git iptables iproute2 iw wpasupplicant net-tools
 RUN apt-get install -y hostapd qrencode dnsmasq lighttpd vnstat
 RUN apt-get install -y dhcpcd5
-RUN apt-get install -y php7.3-cgi
+RUN apt-get install -y php7.4
 RUN apt-get install -y netfilter-persistent
 RUN apt-get install -y wget
 RUN apt-get install -y sudo
