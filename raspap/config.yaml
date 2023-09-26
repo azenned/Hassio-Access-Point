@@ -3,7 +3,7 @@ name: AZE Hotspot wifi pour RPI
 version: 0.0.2
 slug: raspap
 description: Addon Hotspot wifi with raspap-webgui
-url: https://github.com/azenned/Hassio-addons/tree/master/raspap
+url: https://github.com/azenned/hassio-addons-directory/tree/master/raspap
 webui: "[PROTO:ssl]://[HOST]:[PORT:80]"
 startup: application
 arch:
@@ -24,8 +24,6 @@ hassio_api: true
 hassio_role: default
 auth_api: true
 full_access: true
-options: {}
-schema: {}
 privileged:
 - NET_ADMIN
 stage: experimental
