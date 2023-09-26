@@ -1,0 +1,49 @@
+---
+version: 1.15.5
+slug: aze_duckdns
+name: ZENNED Duck DNS
+description: >-
+  Free Dynamic DNS (DynDNS or DDNS) service with Let's Encrypt support
+url: https://github.com/azenned/hassio-duckdns
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+hassio_api: true
+init: false
+host_network: true
+privileged: 
+  - NET_ADMIN 
+map:
+  - ssl:rw
+options:
+  domains:
+    - null
+  token: null
+  aliases: []
+  lets_encrypt:
+    accept_terms: false
+    algo: secp384r1
+    certfile: fullchain.pem
+    keyfile: privkey.pem
+  seconds: 300
+  use_eth0_ipv4: true
+schema:
+  domains:
+    - match(.+\.duckdns\.org)
+  token: str
+  aliases:
+    - alias: str
+      domain: str
+  lets_encrypt:
+    accept_terms: bool
+    algo: list(rsa|prime256v1|secp384r1)
+    certfile: str
+    keyfile: str
+  seconds: int
+  ipv4: str?
+  ipv6: str?
+  use_eth0_ipv4: bool
+startup: services
