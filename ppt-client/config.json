@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "slug": "pptp_client",
   "description": "PPTP Client",
-  "url": "https://github.com/azenned/hassio-pptp-client-addon",
+  "url": "https://github.com/azenned/hassio-addons-directory/tree/main/ppt-client",
   "arch": [
     "armhf",
     "armv7",
