@@ -1,0 +1,34 @@
+{
+  "name": "AZE PPTP Client",
+  "version": "0.0.3",
+  "slug": "pptp_client",
+  "description": "PPTP Client",
+  "url": "https://github.com/azenned/hassio-pptp-client-addon",
+  "arch": [
+    "armhf",
+    "armv7",
+    "aarch64",
+    "amd64",
+    "i386"
+  ],
+  "startup": "application",
+  "boot": "auto",
+  "host_network": true,
+  "privileged": [
+    "NET_ADMIN"
+  ],
+  "options": {
+    "server": "",
+    "username": "",
+    "password": ""
+  },
+  "schema": {
+    "server": "str",
+    "username": "str",
+    "password": "str"
+  },
+  "devices": [
+    "/dev/ppp:/dev/ppp:rwm"
+  ],
+  "full_access": true
+}
