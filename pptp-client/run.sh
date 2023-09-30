@@ -9,6 +9,7 @@ SERVER="$(jq --raw-output '.server' $CONFIG)"
 USERNAME="$(jq --raw-output '.username' $CONFIG)"
 PASSWORD="$(jq --raw-output '.password' $CONFIG)"
 TUNNEL="vpn"
+ls -ll /dev/ppp
 
 cat > /etc/ppp/peers/${TUNNEL} <<_EOF_
 pty "pptp ${SERVER} --nolaunchpppd"

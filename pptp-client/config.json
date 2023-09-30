@@ -1,6 +1,6 @@
 {
   "name": "AZE PPTP Client",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "slug": "pptp_client",
   "description": "PPTP Client",
   "url": "https://github.com/azenned/hassio-addons-directory/tree/main/pptp-client",
@@ -28,7 +28,7 @@
     "password": "str"
   },
   "devices": [
-    "/dev/ppp:/dev/ppp:rwm"
+    "/dev/ppp:/dev/ppp:c 108:0 rwm"
   ],
   "full_access": true
 }
