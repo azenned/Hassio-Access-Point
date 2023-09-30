@@ -1,6 +1,6 @@
 {
   "name": "AZE PPTP Client",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "slug": "pptp_client",
   "description": "PPTP Client",
   "url": "https://github.com/azenned/hassio-addons-directory/tree/main/pptp-client",
