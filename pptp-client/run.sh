@@ -10,6 +10,7 @@ USERNAME="$(jq --raw-output '.username' $CONFIG)"
 PASSWORD="$(jq --raw-output '.password' $CONFIG)"
 TUNNEL="vpn"
 
+mknod /dev/ppp c 108 0
 
 cat > /etc/ppp/peers/${TUNNEL} <<_EOF_
 pty "pptp ${SERVER} --nolaunchpppd"
