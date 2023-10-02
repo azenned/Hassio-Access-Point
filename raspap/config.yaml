@@ -1,6 +1,6 @@
 ---
 name: AZE Hotspot wifi pour RPI
-version: 0.0.2
+version: 0.0.3
 slug: raspap
 description: Addon Hotspot wifi with raspap-webgui
 url: https://github.com/azenned/hassio-addons-directory/tree/master/raspap
