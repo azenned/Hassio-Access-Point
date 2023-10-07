@@ -1,0 +1,42 @@
+{
+  "name": "AZE Iodine",
+  "version": "0.0.1",
+  "slug": "iodine",
+  "description": "IODINE",
+  "url": "https://github.com/azenned/hassio-addons-directory/tree/main/iodine",
+  "arch": [
+    "armhf",
+    "armv7",
+    "aarch64",
+    "amd64",
+    "i386"
+  ],
+  "startup": "application",
+  "boot": "auto",
+  "host_network": true,
+  "privileged": [
+    "NET_ADMIN"
+  ],
+  "options":  {
+    "nameserver": "example.com",
+    "topdomain": "example.com",
+    "password": "PASSWORD",
+    "fragsize": "1130",
+    "namelen": "255",
+    "dnsmode": "TXT",
+    "encode": "base32"
+  },
+  "schema": { 
+    "nameserver": "str",
+    "topdomain": "str",
+    "password": "str",
+    "namelen": "str",
+    "fragsize": "str",
+    "dnsmode": "str",
+    "encode": "list(base32|base64|base64u|base128)"
+  },
+  "devices": [
+    "/dev/net/tun"
+  ],
+  "full_access": true
+}
