@@ -26,9 +26,9 @@
     "dnsmode": "TXT",
     "encode": "base32",
     "foreground": 1,
-    "ipv4": "TXT",
-    "ipv6": "TXT",
-    "skipraw": "TXT"
+    "ipv4": 1,
+    "ipv6": 1,
+    "skipraw": 1
   },
   "schema": { 
     "nameserver": "str",
