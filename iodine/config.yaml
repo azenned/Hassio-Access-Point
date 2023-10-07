@@ -1,7 +1,7 @@
 ---
+name: AZE Iodine
 version: 0.0.4
 slug: iodine
-name: AZE Iodine
 description: >-
   IODINE
 url: https://github.com/azenned/hassio-addons-directory/tree/main/iodine
@@ -40,7 +40,7 @@ schema:
   password: str
   fragsize: int
   namelen: int
-  dnsmode: TXT
+  dnsmode: str
   encode: list(base32|base64|base64u|base128)  
   use_eth0_ipv4: bool
   foreground": bool
