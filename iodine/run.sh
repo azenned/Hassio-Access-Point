@@ -1,17 +1,59 @@
-#!/usr/bin/env bash
+#!/usr/bin/with-contenv bashio
 #run.sh
 
 set +u
 
-CONFIG=/data/options.json
+# Enable job control
+set -eum
 
-NAMESERVER="$(jq --raw-output '.nameserver' $CONFIG)"
-TOPDOMAIN="$(jq --raw-output '.topdomain' $CONFIG)"
-PASSWORD="$(jq --raw-output '.password' $CONFIG)"
-FRAGSIZE="$(jq --raw-output '.fragsize' $CONFIG)"
-NAMELEN="$(jq --raw-output '.namelen' $CONFIG)"
-DNSMODE="$(jq --raw-output '.dnsmode' $CONFIG)"
-ENCODE="$(jq --raw-output '.encode' $CONFIG)" 
+CONFIG_PATH=/data/options.json
+IODINE_FLAGS=()
+
+if bashio::config.has_value 'ipv4'; then
+    if bashio::config.true 'ipv4'; then
+        IODINE_FLAGS+=('-4')
+    fi
+fi
+
+if bashio::config.has_value 'ipv6'; then
+    if bashio::config.true 'ipv6'; then
+        IODINE_FLAGS+=('-6')
+    fi
+fi
+
+if bashio::config.has_value 'skipraw'; then
+    if bashio::config.true 'skipraw'; then
+        IODINE_FLAGS+=('-r')
+    fi
+fi
+
+if bashio::config.has_value 'foreground'; then
+    if bashio::config.true 'foreground'; then
+        IODINE_FLAGS+=('-f')
+    fi
+fi
+
+if bashio::config.has_value 'fragsize'; then
+    TAILSCALED_FLAGS+=('-m', "$(bashio::config 'fragsize')")
+fi
+
+if bashio::config.has_value 'namelen'; then
+    TAILSCALED_FLAGS+=('-M', "$(bashio::config 'namelen')")
+fi
+
+if bashio::config.has_value 'dnsmode'; then
+    TAILSCALED_FLAGS+=('-T', "$(bashio::config 'dnsmode')")
+fi
+
+if bashio::config.has_value 'encode'; then
+    TAILSCALED_FLAGS+=('-O', "$(bashio::config 'encode')")
+fi
+
+if bashio::config.has_value 'nameserver'; then
+    TAILSCALED_FLAGS+=( "$(bashio::config 'nameserver')")
+fi
+
+TAILSCALED_FLAGS+=("$(bashio::config 'topdomain')")
 
 function init_tun(){
     mkdir -p /dev/net
@@ -21,4 +63,4 @@ function init_tun(){
 }
 
 init_tun
-exec iodine -d /dev/net/tun -c -f -m ${FRAGSIZE} -M ${NAMELEN} -P "${PASSWORD}" -T ${DNSMODE} -r -O ${ENCODE} ${NAMESERVER} ${TOPDOMAIN}  "$@"
+exec iodine -d /dev/net/tun ${IODINE_FLAGS[@]} &  

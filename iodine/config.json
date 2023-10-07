@@ -24,12 +24,20 @@
     "fragsize": "1130",
     "namelen": "255",
     "dnsmode": "TXT",
-    "encode": "base32"
+    "encode": "base32",
+    "foreground": 1,
+    "ipv4": "TXT",
+    "ipv6": "TXT",
+    "skipraw": "TXT"
   },
   "schema": { 
     "nameserver": "str",
     "topdomain": "str",
     "password": "str",
+    "ipv4": "bool?",
+    "ipv6": "bool?",
+    "skipraw": "bool?",
+    "foreground": "bool?",
     "namelen": "str",
     "fragsize": "str",
     "dnsmode": "str",
