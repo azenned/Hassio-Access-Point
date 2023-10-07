@@ -1,14 +1,9 @@
-ARG BUILD_ARCH
-FROM homeassistant/${BUILD_ARCH}-base-debian:latest
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-ARG BUILD_ARCH
-
-ENV LANG C.UTF-8
-RUN apt update
-RUN apt install -y wget iptables iproute2 procps iputils-ping iodine jq
- 
-RUN update-alternatives --set iptables /usr/sbin/iptables-legacy
-RUN update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+# Setup base
+ARG DEHYDRATED_VERSION
+RUN apk add --no-cache openssl wget iptables iproute2 procps iputils-ping iodine jq
 
 
 # Copy data for add-on

@@ -1,0 +1,51 @@
+---
+version: 0.0.4
+slug: iodine
+name: AZE Iodine
+description: >-
+  IODINE
+url: https://github.com/azenned/hassio-addons-directory/tree/main/iodine
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+hassio_api: true
+init: false
+boot: auto
+host_network: true
+privileged: 
+  - NET_ADMIN 
+map:
+  - ssl:rw
+devices:
+  - /dev/net/tun
+options:
+  nameserver: example.com
+  topdomain: example.com
+  password: PASSWORD
+  fragsize: 1130
+  namelen: 255
+  dnsmode: TXT
+  encode: base32
+  use_eth0_ipv4: true
+  foreground": true
+  ipv4: true
+  ipv6: true
+  skipraw: true
+schema:
+  nameserver: str
+  topdomain: str
+  password: str
+  fragsize: int
+  namelen: int
+  dnsmode: TXT
+  encode: list(base32|base64|base64u|base128)  
+  use_eth0_ipv4: bool
+  foreground": bool
+  ipv4: bool
+  ipv6: bool
+  skipraw: bool 
+startup: services
+full_access: true
