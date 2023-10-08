@@ -1,13 +1,13 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
+
+# Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ENV LANG C.UTF-8
-
-RUN apk update && \
-apk add --no-cache bash jq iw hostapd networkmanager networkmanager-cli net-tools sudo dnsmasq iptables wget iodine && \
-rm -rf /var/cache/apk/*
+RUN apt-get update
+RUN apt-get install -y iodine  bash jq iw   net-tools sudo dnsmasq iptables wget 
 
 # Copy data for add-on
 COPY run.sh /
