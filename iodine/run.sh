@@ -49,6 +49,10 @@ if bashio::config.has_value 'encode'; then
     IODINE_FLAGS+=("-O $(bashio::config 'encode')")
 fi
 
+if bashio::config.has_value 'password'; then
+    IODINE_FLAGS+=("-P $(bashio::config 'password')")
+fi
+
 if bashio::config.has_value 'nameserver'; then
     IODINE_FLAGS+=("$(bashio::config 'nameserver')")
 fi
