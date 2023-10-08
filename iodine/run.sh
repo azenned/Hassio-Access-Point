@@ -34,23 +34,23 @@ if bashio::config.has_value 'foreground'; then
 fi
 
 if bashio::config.has_value 'fragsize'; then
-    IODINE_FLAGS+=('-m', "$(bashio::config 'fragsize')")
+    IODINE_FLAGS+=("-m $(bashio::config 'fragsize')")
 fi
 
 if bashio::config.has_value 'namelen'; then
-    IODINE_FLAGS+=('-M', "$(bashio::config 'namelen')")
+    IODINE_FLAGS+=("-M $(bashio::config 'namelen')")
 fi
 
 if bashio::config.has_value 'dnsmode'; then
-    IODINE_FLAGS+=('-T', "$(bashio::config 'dnsmode')")
+    IODINE_FLAGS+=("-T $(bashio::config 'dnsmode')")
 fi
 
 if bashio::config.has_value 'encode'; then
-    IODINE_FLAGS+=('-O', "$(bashio::config 'encode')")
+    IODINE_FLAGS+=("-O $(bashio::config 'encode')")
 fi
 
 if bashio::config.has_value 'nameserver'; then
-    IODINE_FLAGS+=( "$(bashio::config 'nameserver')")
+    IODINE_FLAGS+=("$(bashio::config 'nameserver')")
 fi
 
 IODINE_FLAGS+=("$(bashio::config 'topdomain')")
