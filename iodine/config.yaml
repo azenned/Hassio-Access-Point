@@ -20,7 +20,7 @@ privileged:
 map:
   - ssl:rw
 devices:
-  - /dev/net/tun
+  - /dev/net/tun:/dev/net/tun:c 108:0 rwm
 options:
   nameserver: example.com
   topdomain: example.com
