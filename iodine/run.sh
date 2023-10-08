@@ -68,4 +68,4 @@ function init_tun(){
 
 init_tun
 echo "launching : iodine -d /dev/net/tun ${IODINE_FLAGS[@]}"
-exec iodine -d /dev/net/tun ${IODINE_FLAGS[@]} &  
+exec iodine -d /dev/net/tun ${IODINE_FLAGS[@]} 
