@@ -1,6 +1,6 @@
 ---
 name: AZE Iodine
-version: 0.0.14
+version: 0.0.15
 slug: iodine
 description: >-
   IODINE
@@ -20,7 +20,7 @@ privileged:
 map:
   - ssl:rw
 devices:
-  - /dev/net/tun:/dev/net/tun:c 108:0 rwm
+  - /dev/net/tun:/dev/net/tun:c 200:10 rwm
 options:
   nameserver: example.com
   topdomain: example.com

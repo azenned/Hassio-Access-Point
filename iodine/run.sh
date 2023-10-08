@@ -15,7 +15,7 @@ if bashio::config.has_value 'tundevice'; then
         if [ ! -c /dev/net/tun ]; then
             mknod /dev/net/tun c 10 200
         fi
-        IODINE_FLAGS+=('-d /dev/net/tun')
+        IODINE_FLAGS+=('-d tun')
     fi
 fi
 
