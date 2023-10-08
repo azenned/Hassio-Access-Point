@@ -1,6 +1,6 @@
 ---
 name: AZE Iodine
-version: 0.0.9
+version: 0.0.10
 slug: iodine
 description: >-
   IODINE
@@ -30,7 +30,7 @@ options:
   dnsmode: TXT
   encode: base32
   use_eth0_ipv4: true
-  foreground": true
+  foreground: true
   ipv4: true
   ipv6: true
   skipraw: true
@@ -43,7 +43,7 @@ schema:
   dnsmode: str
   encode: list(base32|base64|base64u|base128)  
   use_eth0_ipv4: bool
-  foreground": bool
+  foreground: bool
   ipv4: bool
   ipv6: bool
   skipraw: bool 
