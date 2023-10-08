@@ -1,6 +1,6 @@
 ---
 name: AZE Iodine
-version: 0.0.12
+version: 0.0.13
 slug: iodine
 description: >-
   IODINE
@@ -28,12 +28,12 @@ options:
   fragsize: 1130
   namelen: 255
   dnsmode: TXT
-  encode: base32
-  use_eth0_ipv4: true
+  encode: base32 
   foreground: true
   ipv4: true
   ipv6: true
   skipraw: true
+  tundevice: true
 schema:
   nameserver: str
   topdomain: str
@@ -41,11 +41,11 @@ schema:
   fragsize: int
   namelen: int
   dnsmode: str
-  encode: list(base32|base64|base64u|base128)  
-  use_eth0_ipv4: bool
+  encode: list(base32|base64|base64u|base128)   
   foreground: bool
   ipv4: bool
   ipv6: bool
   skipraw: bool 
+  tundevice: bool 
 startup: services
 full_access: true

@@ -9,6 +9,16 @@ set -eum
 CONFIG_PATH=/data/options.json
 IODINE_FLAGS=()
 
+if bashio::config.has_value 'tundevice'; then
+    if bashio::config.true 'tundevice'; then
+        mkdir -p /dev/net
+        if [ ! -c /dev/net/tun ]; then
+            mknod /dev/net/tun c 10 200
+        fi
+        IODINE_FLAGS+=('-d /dev/net/tun')
+    fi
+fi
+
 if bashio::config.has_value 'ipv4'; then
     if bashio::config.true 'ipv4'; then
         IODINE_FLAGS+=('-4')
@@ -59,13 +69,5 @@ fi
 
 IODINE_FLAGS+=("$(bashio::config 'topdomain')")
 
-function init_tun(){
-    mkdir -p /dev/net
-    if [ ! -c /dev/net/tun ]; then
-        mknod /dev/net/tun c 10 200
-    fi
-}
-
-init_tun
-echo "launching : iodine -d /dev/net/tun ${IODINE_FLAGS[@]}"
-exec iodine -d /dev/net/tun ${IODINE_FLAGS[@]} 
+echo "launching : iodine ${IODINE_FLAGS[@]}"
+exec iodine  ${IODINE_FLAGS[@]} 
