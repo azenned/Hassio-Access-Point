@@ -72,22 +72,24 @@ IODINE_FLAGS+=("$(bashio::config 'topdomain')")
 
 if bashio::config.has_value 'forward'; then
     if bashio::config.true 'forward'; then
-    INTERFACE=wlan0
-    if bashio::config.has_value 'networkdevice'; then
-        INTERFACE=("$(bashio::config 'networkdevice')")
-    fi
+        INTERFACE=wlan0
+        
+        if bashio::config.has_value 'networkdevice'; then
+            INTERFACE=("$(bashio::config 'networkdevice')")
+        fi
 
-    iptables -P FORWARD DROP
-    iptables -t nat -A POSTROUTING -o $INTERFACE -j MASQUERADE
-    iptables -t filter -A FORWARD -i $INTERFACE -o $TUNDEVICE -m state --state RELATED,ESTABLISHED -j ACCEPT
+        iptables -P FORWARD DROP
+        iptables -t nat -A POSTROUTING -o $INTERFACE -j MASQUERADE
+        iptables -t filter -A FORWARD -i $INTERFACE -o $TUNDEVICE -m state --state RELATED,ESTABLISHED -j ACCEPT
 
-    if bashio::config.has_value 'iptables'; then
-        IPTABLES=("$(bashio::config 'iptables')")
-    else
-        IPTABLES="iptables -t filter -A FORWARD -i $TUNDEVICE -o $INTERFACE -j ACCEPT" &&
-        echo "WARN: Using standard IP tables rules - all traffic will be forwarded."; 
+        if bashio::config.has_value 'iptables'; then
+            IPTABLES=("$(bashio::config 'iptables')")
+        else
+            IPTABLES="iptables -t filter -A FORWARD -i $TUNDEVICE -o $INTERFACE -j ACCEPT" &&
+            echo "WARN: Using standard IP tables rules - all traffic will be forwarded."; 
+        fi
+        $IPTABLES
     fi
-    $IPTABLES
 fi
 
 set -x
