@@ -1,6 +1,6 @@
 ---
 name: AZE Iodine
-version: 0.0.16
+version: 0.0.17
 slug: iodine
 description: >-
   IODINE
@@ -35,8 +35,7 @@ options:
   skipraw: true
   tundevice: true
   forward: true
-  networkdevice: true
-  iptables: 
+  networkdevice: wlan0
 schema:
   nameserver: str
   topdomain: str
@@ -52,6 +51,6 @@ schema:
   tundevice: bool 
   forward: bool
   networkdevice: list(wlan0|eth0)   
-  iptables: str   
+  iptables: str?  
 startup: services
 full_access: true
