@@ -34,26 +34,26 @@ if bashio::config.has_value 'foreground'; then
 fi
 
 if bashio::config.has_value 'fragsize'; then
-    TAILSCALED_FLAGS+=('-m', "$(bashio::config 'fragsize')")
+    IODINE_FLAGS+=('-m', "$(bashio::config 'fragsize')")
 fi
 
 if bashio::config.has_value 'namelen'; then
-    TAILSCALED_FLAGS+=('-M', "$(bashio::config 'namelen')")
+    IODINE_FLAGS+=('-M', "$(bashio::config 'namelen')")
 fi
 
 if bashio::config.has_value 'dnsmode'; then
-    TAILSCALED_FLAGS+=('-T', "$(bashio::config 'dnsmode')")
+    IODINE_FLAGS+=('-T', "$(bashio::config 'dnsmode')")
 fi
 
 if bashio::config.has_value 'encode'; then
-    TAILSCALED_FLAGS+=('-O', "$(bashio::config 'encode')")
+    IODINE_FLAGS+=('-O', "$(bashio::config 'encode')")
 fi
 
 if bashio::config.has_value 'nameserver'; then
-    TAILSCALED_FLAGS+=( "$(bashio::config 'nameserver')")
+    IODINE_FLAGS+=( "$(bashio::config 'nameserver')")
 fi
 
-TAILSCALED_FLAGS+=("$(bashio::config 'topdomain')")
+IODINE_FLAGS+=("$(bashio::config 'topdomain')")
 
 function init_tun(){
     mkdir -p /dev/net
