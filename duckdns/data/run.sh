@@ -9,6 +9,7 @@ LE_UPDATE="0"
 # DuckDNS
 if bashio::config.has_value "ipv4"; then IPV4=$(bashio::config 'ipv4'); else IPV4=""; fi
 if bashio::config.has_value "ipv6"; then IPV6=$(bashio::config 'ipv6'); else IPV6=""; fi
+if bashio::config.has_value "interface"; then INTERFACE=$(bashio::config 'interface'); else INTERFACE="eth0"; fi
 TOKEN=$(bashio::config 'token')
 DOMAINS=$(bashio::config 'domains | join(",")')
 WAIT_TIME=$(bashio::config 'seconds')
@@ -70,8 +71,8 @@ while true; do
     [[ ${IPV4} != *:/* ]] && ipv4=${IPV4} || ipv4=$(curl -s -m 10 "${IPV4}")
     [[ ${IPV6} != *:/* ]] && ipv6=${IPV6} || ipv6=$(curl -s -m 10 "${IPV6}")
 
-    if bashio::config.true 'use_eth0_ipv4' ; then
-        ipv4=`ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1`
+    if bashio::config.true 'use_interface_ipv4' ; then
+        ipv4=`ip addr show $INTERFACE | grep "inet\b" | awk '{print $2}' | cut -d/ -f1`
     fi
 
     # No need to update duckdns if ipv4 didnt change
