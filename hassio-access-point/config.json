@@ -1,6 +1,6 @@
 {
   "name": "ZENNED Hass.io Access Point",
-  "version": "0.4.14",
+  "version": "0.4.15",
   "slug": "hassio-access-point",
   "description": "Create a WiFi access point to directly connect devices to Home Assistant",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
@@ -31,6 +31,7 @@
     "debug": 0,
     "hostapd_config_override": [],
     "client_internet_access": "0",
+    "defaultdevice":"eth0",
     "client_dns_override": [],
     "dnsmasq_config_override": []
   },
@@ -51,6 +52,7 @@
     "debug": "int",
     "hostapd_config_override": ["str"],
     "client_internet_access": "int",
+    "defaultdevice": "str",
     "client_dns_override": ["str"],
     "dnsmasq_config_override": ["str"]
   }

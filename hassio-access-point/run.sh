@@ -37,6 +37,8 @@ DENY_MAC_ADDRESSES=$(jq --raw-output '.deny_mac_addresses | join(" ")' $CONFIG_P
 DEBUG=$(jq --raw-output '.debug' $CONFIG_PATH)
 HOSTAPD_CONFIG_OVERRIDE=$(jq --raw-output '.hostapd_config_override | join(" ")' $CONFIG_PATH)
 CLIENT_INTERNET_ACCESS=$(jq --raw-output ".client_internet_access" $CONFIG_PATH)
+DEFAULT_DEVICE=$(jq --raw-output ".defaultdevice" $CONFIG_PATH)
+
 CLIENT_DNS_OVERRIDE=$(jq --raw-output '.client_dns_override | join(" ")' $CONFIG_PATH)
 DNSMASQ_CONFIG_OVERRIDE=$(jq --raw-output '.dnsmasq_config_override | join(" ")' $CONFIG_PATH)
 
@@ -214,7 +216,7 @@ if [ $DHCP -eq 1 ]; then
     if [ $CLIENT_INTERNET_ACCESS -eq 1 ]; then
 
         ## Route traffic
-        iptables-nft -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+        iptables-nft -t nat -A POSTROUTING -o $DEFAULT_DEVICE -j MASQUERADE
         iptables-nft -P FORWARD ACCEPT
         iptables-nft -F FORWARD
     fi
@@ -224,7 +226,7 @@ else
     ## No DHCP == No DNS. Must be set manually on client.
     ## Step 1: Routing
     if [ $CLIENT_INTERNET_ACCESS -eq 1 ]; then
-        iptables-nft -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+        iptables-nft -t nat -A POSTROUTING -o $DEFAULT_DEVICE -j MASQUERADE
         iptables-nft -P FORWARD ACCEPT
         iptables-nft -F FORWARD
     fi
