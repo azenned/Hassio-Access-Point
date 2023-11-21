@@ -1,6 +1,6 @@
 ---
 name: AZE Iodine
-version: 0.0.19
+version: 0.0.20
 slug: iodine
 description: >-
   IODINE
@@ -50,7 +50,7 @@ schema:
   skipraw: bool 
   tundevice: bool 
   forward: bool
-  networkdevice: list(wlan0|eth0)   
+  networkdevice: list(wlan0|eth0|wlp1s0u1u1)   
   iptables: str?  
 startup: services
 full_access: true
