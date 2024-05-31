@@ -101,7 +101,9 @@ fi
 if [[ -n $error ]]; then
     exit 1
 fi
-
+cp /hostapd.conf /hostapd_failsafe.conf
+echo "ssid=AZE_hostapd_failsafe"$'\n' >> /hostapd_failsafe.conf
+echo "wpa_passphrase=$WPA_PASSPHRASE"$'\n' >> /hostapd_failsafe.conf
 # Setup hostapd.conf
 logger "# Setup hostapd:" 1
 logger "Add to hostapd.conf: ssid=$SSID" 1
@@ -241,7 +243,14 @@ fi
 logger "## Starting hostapd daemon" 1
 # If debug level is greater than 1, start hostapd in debug mode
 if [ $DEBUG -gt 1 ]; then
-    killall -q hostapd; hostapd -d /hostapd.conf & wait ${!}
+    killall -q hostapd; hostapd -d /hostapd.conf  & wait ${!}
 else
     killall -q hostapd; hostapd /hostapd.conf & wait ${!}
+fi
+
+hostapd_running=`ps aux | grep hostapd | grep -v grep`
+if [ -z "$hostapd_running" ]; then
+    echo  hostapd is running 
+else
+    killall -q hostapd; hostapd -d /hostapd_failsafe.conf  & wait ${!}
 fi
